@@ -13,6 +13,10 @@ type NotificationMessage = {
   created_at: string;
 };
 
+type RealtimePayload = {
+  new: NotificationMessage;
+};
+
 export default function NotificationBell() {
   const sb = supabaseBrowser();
 
@@ -99,9 +103,11 @@ export default function NotificationBell() {
           filter:
             `receiver_id=eq.${userId}`,
         },
-        async (payload) => {
+        async (
+          payload: RealtimePayload
+        ) => {
           const msg =
-            payload.new as NotificationMessage;
+            payload.new;
 
           if (
             msg.receiver_id !== userId
@@ -167,12 +173,14 @@ export default function NotificationBell() {
           }
         }
       )
-      .subscribe((status) => {
-        console.log(
-          "Global notification status:",
-          status
-        );
-      });
+      .subscribe(
+        (status: string) => {
+          console.log(
+            "Global notification status:",
+            status
+          );
+        }
+      );
 
     return () => {
       sb.removeChannel(channel);

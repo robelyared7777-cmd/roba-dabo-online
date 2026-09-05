@@ -653,7 +653,7 @@ export default function CommunicationPage() {
           updatePresence();
         }
       )
-      .subscribe(async (status) => {
+      .subscribe(async (status: string) => {
         console.log(
           "Roba Dabo presence:",
           status
@@ -699,7 +699,7 @@ export default function CommunicationPage() {
           filter:
             `receiver_id=eq.${me.id}`,
         },
-        async (payload) => {
+        async (payload: { new: PrivateMessage }) => {
           const newMessage =
             payload.new as PrivateMessage;
 
@@ -770,7 +770,7 @@ export default function CommunicationPage() {
           });
         }
       )
-      .subscribe((status) => {
+      .subscribe((status: string) => {
         console.log(
           "Private chat realtime:",
           status

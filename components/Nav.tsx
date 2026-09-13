@@ -131,6 +131,12 @@ export default function Nav() {
       )}
 
       {management && (
+        <Link href="/growth">
+          📈 Growth
+        </Link>
+      )}
+
+      {management && (
         <Link href="/settings">
           Settings
         </Link>

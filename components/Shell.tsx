@@ -1,0 +1,2 @@
+import Nav from "./Nav";
+export default function Shell({children}:{children:React.ReactNode}){return <div className="shell"><header className="top"><div className="brand">ROBA DABO</div><div>Online Management</div></header><Nav/><main className="main">{children}</main></div>}
